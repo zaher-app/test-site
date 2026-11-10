@@ -6,34 +6,52 @@
   <title>Payment link embed test</title>
   <style>
     body { font-family: system-ui, sans-serif; max-width: 640px; margin: 40px auto; padding: 0 16px; line-height: 1.5; }
-    .row { margin: 20px 0; padding: 16px; border: 1px solid #ddd; border-radius: 8px; }
-    .zaher-pay-button { display: inline-block; padding: 10px 18px; background: #111; color: #fff; border-radius: 6px; text-decoration: none; }
+    h2 { margin-top: 36px; }
+    .row { margin: 16px 0; padding: 16px; border: 1px solid #ddd; border-radius: 8px; }
+    .btn, .zaher-pay-button { display: inline-block; padding: 10px 18px; background: #111; color: #fff; border-radius: 6px; text-decoration: none; }
     code { background: #f3f3f3; padding: 2px 4px; border-radius: 4px; word-break: break-all; }
+    .muted { color: #666; font-size: 14px; }
   </style>
-  <!-- Zaher dev environment. Store "hithere" on the test database. -->
+  <!-- Zaher dev environment. Store "hithere" on the test database. Only links with class="zaher-pay-button" open the overlay. -->
   <script src="https://zaher-dev.com/embed/v1/pay.js" defer></script>
 </head>
 <body>
   <h1>Payment link embed test</h1>
   <p>Query string on this page: <code id="qs">(none)</code></p>
 
+  <h2>A. Direct link (normal Zaher flow, no overlay)</h2>
+  <p class="muted">A plain link. The tab goes to the Zaher pay page, pays, then follows the link's redirect URL if it has one.</p>
+
   <div class="row">
-    <p>1. Link with a redirect URL, valid reference <code>user_42</code></p>
+    <p>A1. Link with a redirect URL, reference <code>user_42</code> in the query</p>
+    <a class="btn" href="https://hithere.zaher-dev.com/en/pay/checker-embed-link?reference=user_42">Pay</a>
+  </div>
+
+  <div class="row">
+    <p>A2. Link without a redirect URL (stays on Zaher's paid page)</p>
+    <a class="btn" href="https://hithere.zaher-dev.com/en/pay/checker-embed-link-two">Pay</a>
+  </div>
+
+  <h2>B. Overlay (embed code)</h2>
+  <p class="muted">Same links with <code>class="zaher-pay-button"</code>. Opens over this page; this site must be on the store's allowed sites.</p>
+
+  <div class="row">
+    <p>B1. Link with a redirect URL, reference <code>user_42</code></p>
     <a href="https://hithere.zaher-dev.com/en/pay/checker-embed-link" class="zaher-pay-button" data-reference="user_42">Pay</a>
   </div>
 
   <div class="row">
-    <p>2. Link without a redirect URL, valid reference (returns to this page after paying)</p>
+    <p>B2. Link without a redirect URL (returns to this page after paying)</p>
     <a href="https://hithere.zaher-dev.com/en/pay/checker-embed-link-two" class="zaher-pay-button" data-reference="user_43">Pay</a>
   </div>
 
   <div class="row">
-    <p>3. Invalid reference (space and @): payment works, no reference, console warning</p>
+    <p>B3. Invalid reference (space and @): payment works, no reference, console warning</p>
     <a href="https://hithere.zaher-dev.com/en/pay/checker-embed-link-two" class="zaher-pay-button" data-reference="bad ref@x">Pay</a>
   </div>
 
   <div class="row">
-    <p>4. No reference, Arabic</p>
+    <p>B4. No reference, Arabic</p>
     <a href="https://hithere.zaher-dev.com/ar/pay/checker-embed-link-two" class="zaher-pay-button">ادفع</a>
   </div>
 
