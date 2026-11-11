@@ -8,11 +8,11 @@
     body { font-family: system-ui, sans-serif; max-width: 640px; margin: 40px auto; padding: 0 16px; line-height: 1.5; }
     h2 { margin-top: 36px; }
     .row { margin: 16px 0; padding: 16px; border: 1px solid #ddd; border-radius: 8px; }
-    .btn, .zaher-pay-button { display: inline-block; padding: 10px 18px; background: #111; color: #fff; border-radius: 6px; text-decoration: none; }
+    .btn, [data-zaher-overlay] { display: inline-block; padding: 10px 18px; background: #111; color: #fff; border-radius: 6px; text-decoration: none; }
     code { background: #f3f3f3; padding: 2px 4px; border-radius: 4px; word-break: break-all; }
     .muted { color: #666; font-size: 14px; }
   </style>
-  <!-- Zaher dev environment. Store "hithere" on the test database. Only links with class="zaher-pay-button" open the overlay. -->
+  <!-- Zaher dev environment. Store "hithere" on the test database. Only links with data-zaher-overlay open the overlay. -->
   <script src="https://zaher-dev.com/embed/v1/pay.js" defer></script>
 </head>
 <body>
@@ -33,26 +33,26 @@
   </div>
 
   <h2>B. Overlay (embed code)</h2>
-  <p class="muted">Same links with <code>class="zaher-pay-button"</code>. Opens over this page; this site must be on the store's allowed sites.</p>
+  <p class="muted">Same links with the <code>data-zaher-overlay</code> attribute. Opens over this page; this site must be on the store's allowed sites.</p>
 
   <div class="row">
     <p>B1. Link with a redirect URL, reference <code>user_42</code></p>
-    <a href="https://hithere.zaher-dev.com/en/pay/checker-embed-link" class="zaher-pay-button" data-reference="user_42">Pay</a>
+    <a href="https://hithere.zaher-dev.com/en/pay/checker-embed-link" data-zaher-overlay data-reference="user_42">Pay</a>
   </div>
 
   <div class="row">
     <p>B2. Link without a redirect URL (returns to this page after paying)</p>
-    <a href="https://hithere.zaher-dev.com/en/pay/checker-embed-link-two" class="zaher-pay-button" data-reference="user_43">Pay</a>
+    <a href="https://hithere.zaher-dev.com/en/pay/checker-embed-link-two" data-zaher-overlay data-reference="user_43">Pay</a>
   </div>
 
   <div class="row">
     <p>B3. Invalid reference (space and @): payment works, no reference, console warning</p>
-    <a href="https://hithere.zaher-dev.com/en/pay/checker-embed-link-two" class="zaher-pay-button" data-reference="bad ref@x">Pay</a>
+    <a href="https://hithere.zaher-dev.com/en/pay/checker-embed-link-two" data-zaher-overlay data-reference="bad ref@x">Pay</a>
   </div>
 
   <div class="row">
     <p>B4. No reference, Arabic</p>
-    <a href="https://hithere.zaher-dev.com/ar/pay/checker-embed-link-two" class="zaher-pay-button">ادفع</a>
+    <a href="https://hithere.zaher-dev.com/ar/pay/checker-embed-link-two" data-zaher-overlay>ادفع</a>
   </div>
 
   <script>
