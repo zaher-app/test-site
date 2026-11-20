@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Product embed test</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 640px; margin: 40px auto; padding: 0 16px; line-height: 1.5; }
+    h2 { margin-top: 36px; }
+    .row { margin: 16px 0; padding: 16px; border: 1px solid #ddd; border-radius: 8px; }
+    .btn, [data-zaher-overlay] { display: inline-block; padding: 10px 18px; background: #111; color: #fff; border-radius: 6px; text-decoration: none; }
+    code { background: #f3f3f3; padding: 2px 4px; border-radius: 4px; word-break: break-all; }
+    .muted { color: #666; font-size: 14px; }
+  </style>
+  <!-- Zaher dev environment. Store "hithere" on the test database. Only links with data-zaher-overlay open the pop-up. -->
+  <script src="https://zaher-dev.com/embed/v1/pay.js" defer></script>
+</head>
+<body>
+  <h1>Product embed test</h1>
+  <p>Query string on this page: <code id="qs">(none)</code></p>
+
+  <h2>A. Pop-up (embed code)</h2>
+  <p class="muted">Opens checkout over this page; this site must be on the store's allowed sites.</p>
+
+  <div class="row">
+    <p>A1. Digital product</p>
+    <a href="https://hithere.zaher-dev.com/en/pay/p/441bd83e-1587-468f-9dca-8c1afb8b5626" data-zaher-overlay>Buy now</a>
+  </div>
+
+  <div class="row">
+    <p>A2. Digital product, redirect to <code>thanks.html</code> after paying</p>
+    <a href="https://hithere.zaher-dev.com/en/pay/p/441bd83e-1587-468f-9dca-8c1afb8b5626" data-redirect-url="https://zaher-app.github.io/test-site/thanks.html" data-zaher-overlay>Buy now</a>
+  </div>
+
+  <div class="row">
+    <p>A3. Physical product</p>
+    <a href="https://hithere.zaher-dev.com/en/pay/p/14e43b34-5166-4daa-9a22-00a0e06bcd49" data-zaher-overlay>Buy now</a>
+  </div>
+
+  <div class="row">
+    <p>A4. Consulting (booking)</p>
+    <a href="https://hithere.zaher-dev.com/en/pay/p/d6c8b403-0fab-4afc-b2c5-3839e151478c" data-zaher-overlay>Book now</a>
+  </div>
+
+  <div class="row">
+    <p>A5. Digital product, Arabic</p>
+    <a href="https://hithere.zaher-dev.com/ar/pay/p/441bd83e-1587-468f-9dca-8c1afb8b5626" data-zaher-overlay>اشتر الآن</a>
+  </div>
+
+  <h2>B. Share link (no script)</h2>
+  <p class="muted">A plain link: the tab goes to the Zaher page.</p>
+
+  <div class="row">
+    <p>B1. Digital product</p>
+    <a class="btn" href="https://hithere.zaher-dev.com/en/pay/p/441bd83e-1587-468f-9dca-8c1afb8b5626">Buy now</a>
+  </div>
+
+  <script>
+    document.getElementById("qs").textContent = location.search || "(none)";
+  </script>
+</body>
+</html>
